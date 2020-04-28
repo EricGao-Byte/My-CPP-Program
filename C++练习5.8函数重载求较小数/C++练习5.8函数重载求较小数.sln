@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29926.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "C++练习5.8函数重载求较小数", "C++练习5.8函数重载求较小数.vcxproj", "{844FBEA6-1FFC-4D0F-9AD8-F4D41F5DB0BC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{844FBEA6-1FFC-4D0F-9AD8-F4D41F5DB0BC}.Debug|x64.ActiveCfg = Debug|x64
+		{844FBEA6-1FFC-4D0F-9AD8-F4D41F5DB0BC}.Debug|x64.Build.0 = Debug|x64
+		{844FBEA6-1FFC-4D0F-9AD8-F4D41F5DB0BC}.Debug|x86.ActiveCfg = Debug|Win32
+		{844FBEA6-1FFC-4D0F-9AD8-F4D41F5DB0BC}.Debug|x86.Build.0 = Debug|Win32
+		{844FBEA6-1FFC-4D0F-9AD8-F4D41F5DB0BC}.Release|x64.ActiveCfg = Release|x64
+		{844FBEA6-1FFC-4D0F-9AD8-F4D41F5DB0BC}.Release|x64.Build.0 = Release|x64
+		{844FBEA6-1FFC-4D0F-9AD8-F4D41F5DB0BC}.Release|x86.ActiveCfg = Release|Win32
+		{844FBEA6-1FFC-4D0F-9AD8-F4D41F5DB0BC}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D0B572BA-0364-4CBE-9EBA-65D219B838D0}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29926.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "C++练习5.9内联函数求三个数的最大值", "C++练习5.9内联函数求三个数的最大值.vcxproj", "{26B2BAF7-09B0-40A1-A873-F2B9CFE3B080}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{26B2BAF7-09B0-40A1-A873-F2B9CFE3B080}.Debug|x64.ActiveCfg = Debug|x64
+		{26B2BAF7-09B0-40A1-A873-F2B9CFE3B080}.Debug|x64.Build.0 = Debug|x64
+		{26B2BAF7-09B0-40A1-A873-F2B9CFE3B080}.Debug|x86.ActiveCfg = Debug|Win32
+		{26B2BAF7-09B0-40A1-A873-F2B9CFE3B080}.Debug|x86.Build.0 = Debug|Win32
+		{26B2BAF7-09B0-40A1-A873-F2B9CFE3B080}.Release|x64.ActiveCfg = Release|x64
+		{26B2BAF7-09B0-40A1-A873-F2B9CFE3B080}.Release|x64.Build.0 = Release|x64
+		{26B2BAF7-09B0-40A1-A873-F2B9CFE3B080}.Release|x86.ActiveCfg = Release|Win32
+		{26B2BAF7-09B0-40A1-A873-F2B9CFE3B080}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {57706972-F47A-46F5-A748-7D849E9A2B7A}
+	EndGlobalSection
+EndGlobal
