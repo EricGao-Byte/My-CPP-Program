@@ -1,6 +1,9 @@
 #include <iostream>
 #include <math.h>
 using namespace std;
+//在当前类以外定义的、不属于当前类的函数也可以在类中声明，但要在前面加 friend 关键字，这样就构成了友元函数。
+//友元函数可以是不属于任何类的非成员函数，也可以是其他类的成员函数。
+//友元函数,可以直接访问private和protected的数据对象
 
 class Point
 {
@@ -24,7 +27,6 @@ public:
 		return Y;
 	}
 	/*friend */static double Distance(Point& a, Point& b);
-	//定义了一个Point类的友元函数,可以直接访问private和protected的数据对象
 };
 class Slope
 {
