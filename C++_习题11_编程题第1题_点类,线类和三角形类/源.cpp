@@ -13,6 +13,7 @@ public:
 	double GetY();
 	void SetX(double x);
 	void SetY(double y);
+	void SetPoint(Point);
 
 private:
 	double x_, y_;
@@ -22,36 +23,37 @@ class Line :public Point
 {
 public:
 	Line(Point A, Point B);
-	Line();
-	void PrintPoint();
+	Line(){}
+	Point GetLinePoint1();
+	void GetLinePoint2(Point*);
+	void PrintLine();
 	double LineLength();
-
+	void SetLine(Point, Point);
 private:
-	Point A_, B_;
+	Point A_;  //已经有一个点,再加一个点组成一条边
 };
 
 class Triangle :public Line
 {
 public:
 	Triangle(Point A, Point B, Point C);
-	void PrintPoint();
+	void PrintTrianglePoint();
 	double TrianglePerimeter();
 	void PrintTrianglePerimeter();
 	double TriangleArea();
 	void PrintTriangleArea();
 private:
-	Point A_, B_, C_;
-	Line AB_, AC_, BC_;
+	Point A_;  //已经有一条边,再加一个点就可以组成一个三角形
 };
 
 int main()
 {
-	Point A(0,0), B(0, 4), C(3, 0);
+	Point A(0,0), B(0, 5), C(12, 0);
 	//Line AB(A, B);
-	//AB.PrintPoint();
+	//AB.PrintLine();
 	//cout << AB.LineLength() << endl;
 	Triangle ABC(A, B, C);
-	ABC.PrintPoint();
+	ABC.PrintTrianglePoint();
 	ABC.PrintTrianglePerimeter();
 	ABC.PrintTriangleArea();
 	return 0;
@@ -59,23 +61,38 @@ int main()
 
 inline Line::Line(Point A, Point B)
 {
-	A_ = A;
-	B_ = B;
+	SetPoint(A);
+	A_ = B;
 }
 
-inline Line::Line() { A_.SetX(0), A_.SetY(0), B_.SetX(0), B_.SetY(0); }
+Point Line::GetLinePoint1()
+{
+	return A_;
+}
 
-inline void Line::PrintPoint()
+void Line::GetLinePoint2(Point* p_B)
+{
+	p_B->SetX(GetX());
+	p_B->SetY(GetY());
+}
+	
+
+inline void Line::PrintLine()
 {
 	cout << "Line's point is:";
+	PrintPoint();
 	A_.PrintPoint();
-	B_.PrintPoint();
-	cout << endl;
 }
 
 inline double Line::LineLength()
 {
-	return sqrt((A_.GetX() - B_.GetX()) * (A_.GetX() - B_.GetX()) + (A_.GetY() - B_.GetY()) * (A_.GetY() - B_.GetY()));
+	return sqrt((A_.GetX() - GetX()) * (A_.GetX() - GetX()) + (A_.GetY() - GetY()) * (A_.GetY() - GetY()));
+}
+
+void Line::SetLine(Point A ,Point B)
+{
+	SetPoint(A);
+	A_ = B;
 }
 
 inline Point::Point(double x, double y)
@@ -105,26 +122,38 @@ inline void Point::SetX(double x) { x_ = x; }
 
 inline void Point::SetY(double y) { y_ = y; }
 
-inline Triangle::Triangle(Point A, Point B, Point C)
+void Point::SetPoint(Point point)
 {
-	A_ = A, B_ = B, C_ = C;
-	AC_ = Line(A_, C_);
-	AB_ = Line(A_, B_);
-	BC_ = Line(B_, C_);
+	SetX(point.GetX());
+	SetY(point.GetY());
 }
 
-inline void Triangle::PrintPoint()
+
+
+
+
+inline Triangle::Triangle(Point A, Point B, Point C)
+{
+	SetLine(A, B);
+	A_ = C;
+}
+
+inline void Triangle::PrintTrianglePoint()
 {
 	cout << "Triangle's point is:";
+	PrintLine();
 	A_.PrintPoint();
-	B_.PrintPoint();
-	C_.PrintPoint();
 	cout << endl;
 }
 
 double Triangle::TrianglePerimeter()
 {
-	return AB_.LineLength() + AC_.LineLength() + BC_.LineLength();
+	Point B, C;
+	B = GetLinePoint1();
+	GetLinePoint2(&C);
+	Line AB(A_, B);
+	Line AC(A_, C);
+	return LineLength() + AB.LineLength() + AC.LineLength();
 }
 
 inline void Triangle::PrintTrianglePerimeter()
@@ -136,7 +165,12 @@ inline void Triangle::PrintTrianglePerimeter()
 
 double Triangle::TriangleArea()
 {
-	double a = BC_.LineLength(), b = AC_.LineLength(), c = AB_.LineLength();
+	Point B, C;
+	B = GetLinePoint1();
+	GetLinePoint2(&C);
+	Line AB(A_, B);
+	Line AC(A_, C);
+	double a = LineLength(), b = AB.LineLength(), c = AC.LineLength();
 	return  0.25 * sqrt((a + b + c) * (a + b - c) * (a + c - b) * (b + c - a));
 }
 

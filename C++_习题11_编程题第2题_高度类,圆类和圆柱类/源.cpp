@@ -28,6 +28,8 @@ private:
 public:
 	Height(double height);
 	Height();
+	double GetHeight();
+	void SetHeight(double);
 };
 
 class Circle
@@ -38,19 +40,22 @@ private:
 public:
 	Circle(Point circle_center, double radius);
 	Circle();
-	Point GetCircleCenter();
 	double CirclePerimeter();
 	double CircleArea();
+	double GetRadius();
+	void SetRadius(double);
+	Point GetCircleCenter();
+	void SetCircleCenter(Point);
+	void SetCircle(Circle);
 };
 
 class Cylinder :public Height, public Circle
 {
-private:
-	double height_;
-	Circle circle_;
+//private:
+//	double height_;
+//	Circle circle_;
 public:
 	Cylinder(Circle circle, double height);
-	Cylinder();
 	double CylinderVolume();
 	void PrintCylinderVolume();
 	double CylinderSurfaceArea();
@@ -125,23 +130,37 @@ inline double Circle::CircleArea()
 	return pi * radius_ * radius_;
 }
 
-inline Cylinder::Cylinder(Circle circle, double height)
+double Circle::GetRadius()
 {
-	circle_ = circle;
-	height_ = height;
+	return radius_;
 }
 
-inline Cylinder::Cylinder()
+void Circle::SetRadius(double radius)
 {
-	Point O(0, 0);
-	Circle A(O, 1);
-	circle_ = A;
-	height_ = 1;
+	radius_ = radius;
 }
+
+void Circle::SetCircleCenter(Point circle_center)
+{
+	circle_center_ = circle_center;
+}
+
+void Circle::SetCircle(Circle circle)
+{
+	SetRadius(circle.GetRadius());
+	SetCircleCenter(circle.GetCircleCenter());
+}
+
+inline Cylinder::Cylinder(Circle circle, double height)
+{
+	SetCircle(circle);
+	SetHeight(height);
+}
+
 
 inline double Cylinder::CylinderVolume()
 {
-	return circle_.CircleArea() * height_;
+	return CircleArea() * GetHeight();
 }
 
 inline void Cylinder::PrintCylinderVolume()
@@ -151,7 +170,7 @@ inline void Cylinder::PrintCylinderVolume()
 
 inline double Cylinder::CylinderSurfaceArea()
 {
-	return 2 * circle_.CircleArea() + height_ * circle_.CirclePerimeter();
+	return 2 * CircleArea() + GetHeight() * CirclePerimeter();
 }
 
 inline void Cylinder::PrintCylinderSurfaceArea()
@@ -162,3 +181,13 @@ inline void Cylinder::PrintCylinderSurfaceArea()
 inline Height::Height(double height) { height_ = height; }
 
 inline Height::Height() { height_ = 0; }
+
+double Height::GetHeight()
+{
+	return height_;
+}
+
+void Height::SetHeight(double height)
+{
+	height_ = height;
+}

@@ -21,10 +21,8 @@ public:
 class Student :public Person
 {
 private:
-	Person student_;
 	int math_, physic_, eng_, prog_;
 public:
-	Student(Person);
 	void SetScore(char, int);
 	void PrintStudent();
 };
@@ -32,11 +30,9 @@ public:
 class Teacher :public Person
 {
 private:
-	Person teacher_;
 	char headship_[20], post_[20];
 	int salary_;
 public:
-	Teacher(Person);
 	void SetHeadship(const char*);
 	void SetPost(const char*);
 	void SetSalary(int);
@@ -45,32 +41,30 @@ public:
 
 int main()
 {
-	Person student;
+	Student student;
 	student.SetNum("3180811020");
 	student.SetName("Gaochuanjin");
 	student.SetSex('m');
 	student.SetAddr("Shanxi,Xi'an");
 	student.SetTel("10086");
 	student.SetEmail("2265351510@qq.com");
-	Student student1(student);
-	student1.SetScore('m', 90);
-	student1.SetScore('p', 90);
-	student1.SetScore('e', 90);
-	student1.SetScore('c', 90);
-	student1.PrintStudent();
+	student.SetScore('m', 90);
+	student.SetScore('p', 90);
+	student.SetScore('e', 90);
+	student.SetScore('c', 90);
+	student.PrintStudent();
 
-	Person teacher;
+	Teacher teacher;
 	teacher.SetNum("1234567");
 	teacher.SetName("Teacher");
 	teacher.SetSex('m');
 	teacher.SetAddr("Shanxi,Xi'an");
 	teacher.SetTel("10086");
 	teacher.SetEmail("teacher@qq.com");
-	Teacher teacher1(teacher);
-	teacher1.SetHeadship("headmaster");
-	teacher1.SetPost("good teacher");
-	teacher1.SetSalary(10000);
-	teacher1.PrintTeacher();
+	teacher.SetHeadship("headmaster");
+	teacher.SetPost("good teacher");
+	teacher.SetSalary(10000);
+	teacher.PrintTeacher();
 	return 0;
 }
 
@@ -114,11 +108,6 @@ void Person::PrintPerson()
 		<< "Email: " << email_ << endl;
 }
 
-Student::Student(Person student)
-{
-	student_ = student;
-	math_ = eng_ = physic_ = prog_ = 0;
-}
 
 void Student::SetScore(char tag, int score)
 {
@@ -147,17 +136,14 @@ void Student::SetScore(char tag, int score)
 void Student::PrintStudent()
 {
 	cout << "   class Student:" << endl;
-	student_.PrintPerson();
+	PrintPerson();
 	cout << "Math score: " << math_ << endl
 		<< "Physic score: " << physic_ << endl
 		<< "Eng score: " << eng_ << endl
 		<< "Prog score: " << prog_ << endl;
 }
 
-Teacher::Teacher(Person teacher)
-{
-	teacher_ = teacher;
-}
+
 
 void Teacher::SetHeadship(const char* headship)
 {
@@ -177,7 +163,7 @@ void Teacher::SetSalary(int salary)
 void Teacher::PrintTeacher()
 {
 	cout << "   class Teacher:" << endl;
-	teacher_.PrintPerson();
+	PrintPerson();
 	cout << "Headship: " << headship_ << endl
 		<< "Post: " << post_ << endl
 		<< "Salary: " << salary_ << endl;
