@@ -21,6 +21,7 @@ int judge(char ope)
 	default:return -1;
 	}
 }
+//将表达式转换为后缀表达式
 void convert(char* midfix, char* suffix)
 {
 	char* pre, * suf;
@@ -85,7 +86,7 @@ void convert(char* midfix, char* suffix)
 						*suf = ' ';
 						suf++;
 						stack[top] = *pre;
-						top--;
+						//top--;
 					}
 
 				}

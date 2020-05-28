@@ -1,24 +1,28 @@
 #include <iostream>
 using namespace std;
 
-template <typename T>
 class Complex
 {
 
 public:
-	void SetReal(T r);
-	void SetImage(T i);
-	T GetReal();
-	T GetImage();
+	Complex(double real = 0.0, double image = 0.0)
+	{
+		real_ = real;
+		image_ = image;
+	}
+	void SetReal(double r);
+	void SetImage(double i);
+	double GetReal();
+	double GetImage();
 	void PrintComplex();
-	friend void Output<Complex>(Complex& complex);
+
 private:
-	T real, image;
+	double real_, image_;
 };
 
 int main()
 {
-	Complex<double> complex;
+	Complex complex;
 	complex.SetReal(3.45);
 	complex.SetImage(384.5);
 	cout << "real part:" << complex.GetReal() << endl;
@@ -27,45 +31,42 @@ int main()
 	return 0;
 }
 
-template<typename T>
-void Complex<T>::SetReal(T r)
+void Complex::SetReal(double r)
 {
-	real = r;
+	real_ = r;
 }
 
-template<typename T>
-void Complex<T>::SetImage(T i)
+void Complex::SetImage(double i)
 {
-	image = i;
+	image_ = i;
 }
 
-template<typename T>
-T Complex<T>::GetReal()
+double Complex::GetReal()
 {
-	return real;
+	return real_;
 }
 
-template<typename T>
-T Complex<T>::GetImage()
+double Complex::GetImage()
 {
-	return image;
+	return image_;
 }
 
-template<typename T>
-void Complex<T>::PrintComplex()
+void Complex::PrintComplex()
 {
-	if (image == 0)
+	if (image_ == 0)
 	{
-		cout << real << endl;
+		cout << real_ << endl;
 	}
-	else if (image > 0)
+	else if (image_ > 0)
 	{
-		cout << real << "+" << image << "i" << endl;
+		cout << real_ << "+" << image_ << "i" << endl;
 	}
 	else
 	{
-		cout << real << image << "i" << endl;
+		cout << real_ << image_ << "i" << endl;
 	}
 }
+
+
 
 
