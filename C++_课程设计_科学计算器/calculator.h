@@ -189,3 +189,133 @@ inline void Calculator<Datatype>::printPostfix()
 	cout << "后缀表达式表达式为:" << endl;
 	cout << postfix << endl;
 }
+
+void MainWindow::calculatePostfix()
+{
+	postfix = postfix_;
+	const char* atof_postfix;  //指向数字段的开头,用于转换字符串中的数字
+	while (*postfix != '\0')
+	{
+		if (isNumber(*postfix) || (*postfix == '-' && isNumber(*(postfix + 1)))) //是数字,直接入数字栈
+		{
+			atof_postfix = postfix;
+			if (*postfix == '-')
+			{
+				postfix++;
+			}
+			while (isNumber(*postfix))
+			{
+				postfix++;
+			}
+			postfix++; //跳过空格
+			numbers.pushStack(atof(atof_postfix));  //atof():将字符串中的数字转换为双精度浮点数
+		}
+		else  //是数字符
+		{
+			switch (*postfix)
+			{
+			case '+':
+				numbers.pushStack(Add(numbers.popStack(), numbers.popStack())); break;
+			case '-':
+				numbers.pushStack(Sub(numbers.popStack(), numbers.popStack())); break;
+			case '*':
+				numbers.pushStack(Mul(numbers.popStack(), numbers.popStack())); break;
+			case '/':
+				numbers.pushStack(Div(numbers.popStack(), numbers.popStack())); break;
+			case '^':
+				numbers.pushStack(Pow(numbers.popStack(), numbers.popStack())); break;
+			case 'S':
+				numbers.pushStack(Sqrt(numbers.popStack())); break;
+			default:
+				break;
+			}
+			postfix++;
+		}
+	}
+	result_ = numbers.popStack();
+}
+
+
+/* 以下为计算函数模块  */
+
+double MainWindow::Add(double opd1, double opd2)
+{
+	return opd1 + opd2;
+}
+
+
+double MainWindow::Sub(double opd1, double opd2)
+{
+	return opd1 - opd2;
+}
+
+
+double MainWindow::Mul(double opd1, double opd2)
+{
+	return opd1 * opd2;
+}
+
+
+double MainWindow::Div(double opd1, double opd2)
+{
+	if (opd2 == 0)
+	{
+		//        ui->label->setText( "错误! 分母不能为0!" );
+		return -2345783;
+	}
+	else
+	{
+		return opd1 / opd2;
+	}
+}
+
+
+double MainWindow::Pow(double opd1, double opd2)
+{
+	//opd1^opd2 opd1的opd2次方
+	double opd = 1;
+	int i;
+	if (opd2 < 0)
+	{
+		opd2 = -opd2;
+		for (i = 0; i < opd2; i++)
+		{
+			opd *= opd1;
+		}
+		opd = 1.0 / opd;
+		return opd;
+	}
+	else
+	{
+		for (i = 0; i < opd2; i++)
+		{
+			opd *= opd1;
+		}
+		return opd;
+	}
+}
+
+
+double MainWindow::Sqrt(double opd1)
+{
+	//根号opd1
+	if (opd1 < 0)
+	{
+		//        ui->label->setText("错误! 被开方数不能小于0!");
+		return -1927348;
+	}
+	else if (opd1 == 0)
+	{
+		return opd1;
+	}
+	else
+	{
+		int i;
+		double opd = opd1 / 2;
+		for (i = 0; i < 100; i++)
+		{
+			opd = 0.5 * (opd + opd1 / opd);
+		}
+		return opd;
+	}
+}

@@ -1,12 +1,16 @@
 #include <iostream>
 #include <cstdlib>
+#include <iomanip>
+#include <fstream>
+#include <sstream>
+#include <string>
+#include <cmath>
 using namespace std;
 
 int main()
 {
-	char a[100];
-	cin >> a;
-	cout << a << endl;
-	cout << atof(a) << endl;
+	double a = 2.3;
+	a = pow(a, 2);
+	cout << a;
 	return 0;
 }
